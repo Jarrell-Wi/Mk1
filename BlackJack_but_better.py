@@ -13,7 +13,7 @@ class cards:
 
     def CheckHand (Place):
             for i in range (len(Place.hand)):
-                tot = tot + place.hand[i]
+                tot += Place.hand[i]
             if tot + 10 > 21:
                 return False
             if tot + 10 <= 21:
@@ -24,11 +24,12 @@ class cards:
         print(len(Place.hand))
         if card == 1:
             if Place.CheckHand():
-                card = card + 10
+                card += 10
                 Place.Hasace +=1
             else:
                 Place.Hasace +=1
         Place.hand.append(card)
+        
     def PrintHand(Place):
         for each in Place.hand:
             if each == 11:
@@ -41,10 +42,15 @@ if __name__ == "__main__":
         if Start == 'Y':
             player = cards()
             dealer = cards()
-            print(player.PrintHand())
-            print(dealer.PrintHand())
-            print(player.hand,player.Hasace)
-            print(dealer.hand,dealer.Hasace)
+            print('')
+            print('Your hand:')
+            print(player.hand[0],player.hand[1])
+            print('Aces',player.PrintHand())
+            print('')
+            print('Dealer\'s hand:')
+            print(dealer.hand[0],dealer.hand[1])
+            print('Aces',dealer.PrintHand())
+            print('')
         else:
             Exit = True
 print('Game ended.')
