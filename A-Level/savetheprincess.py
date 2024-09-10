@@ -1,4 +1,5 @@
 from random import randint
+import random
 
 size=2
 while size%2==0:
@@ -7,11 +8,10 @@ while size%2==0:
 board=[["-" for x in range(size)] for y in range(size)]
 mid=(size//2)
 board[mid][mid]="m"
-board[randint(0,size)][randint(0,size)]="p"
+princessx = random.randint(0,size)
+princessy = random.randint(0,size)
+board [princessx][princessy] = 'p'
 
-mariopos = mid
-for i in range(len(board)):
-    for j in range(len(row)):
 
 
 
@@ -24,6 +24,9 @@ for row in board:
 
 print("Maurizio needs to rescue the Princess")
 
+mariopos = mid
+for i in range(len(board)):
+    for j in range(len(row)):
 
 
 
