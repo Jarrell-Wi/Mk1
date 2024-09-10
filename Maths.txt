@@ -1,0 +1,7 @@
+population - whole set of items of interest
+Cencus - observes/measures every member of a population
+Sample - observations from a subset used to learn about a whole population
+sampling units - individuals of  a population
+sampling frame - When sampling units are given names/numbers
+systematic sampling - using intervals to select sampling units
+stratified sampling - dividing population into groups and selecting Samples from each
