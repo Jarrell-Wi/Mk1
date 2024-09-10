@@ -11,7 +11,8 @@ board[randint(0,size)][randint(0,size)]="p"
 
 mariopos = mid
 for i in range(len(board)):
-    for i in range(len(row)):
+    for j in range(len(row)):
+
 
 
 
