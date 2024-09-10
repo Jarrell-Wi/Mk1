@@ -1,5 +1,4 @@
 import random
-Game = True
 
 class Investment:
     def __init__(self, name):
@@ -18,6 +17,7 @@ class User:
         self.Money = 1000
         self.Investments = {}
         self.Day = 0
+        self.LocalSave = ""
     def Invest(self, selection, amount):
         currentStockPrice = selection.stockValue
         totalPrice = currentStockPrice * amount
@@ -39,11 +39,30 @@ WiggetGroup = Investment("Wigget Group")
 Investments = [McDonalds, BurgerKing, WiggetGroup]
 
 def CreateLocal():
-    with open("Data.txt") as file:
-        pass
+    num = random.randint(0, 999999)
+    text = ""
+    try:
+        with open("./UserSave"+str(num), "r+") as file:
+            text = file.readline()
+            file.close()
+    except:
+        open("./UserSave"+str(num), "x")
+    print("Text:",text)  
+    if text == "":
+        Player.LocalSave = "UserSave" + str(num)
+    else:
+        a = input("New Player? ").lower()
+        if a.lower == "n" or a.lower == "no":
+            Player.LocalSave = text
+            print(Player.LocalSave)
+        else:
+            Player.LocalSave = "UserSave" + str(num)
 
 def SaveData():
-    pass
+    Data = Player.LocalSave + "\n" + str(Player.Money) + "\n" + str(Player.Investments) + "\n" + str(Player.Day)
+    with open(Player.LocalSave, "a+") as file:
+        file.write(Data)
+        file.close()
 
 def stockinvest():
     for i in range(len(Investments)):
@@ -55,6 +74,7 @@ def stockinvest():
     Player.Invest(investment, amount)
 
 def startday():
+    Game = True
     while Game != False:
         for i in range(len(Investments)):
             Investments[i].changeStock()
@@ -62,7 +82,13 @@ def startday():
         messages = [f'It\'s day {Player.Day} lets get started.', f'Rise and shine it\'s day {Player.Day} time to start investing.', f'GooPlayer.Day it\'s day {Player.Day}. Get the flippity dippity flop up and start investing YOU LAZY BASTARD!', 'Good morning sunshine, invest don\'t rest and get to it', f'Day {Player.Day} wow look how far we\'ve come, tired of investing yet? I DONT CARE DO YOU WANT YOUR LAPTOP FIXED OR NOT!','Get up! Your snooze button isn\'t going to press itself.',f'WAKE UP! Its day {Player.Day}, your pillow is begging for a break seriously.', f'Morning, it\'s day {Player.Day}! Your bed might miss you but the world won\'t. I promise.']
         choice = random.randint(0, len(messages) - 1)
         print(messages[choice])
-        stockinvest()
+        print("What Do You Want To Do?")
+        userChoice = input(">")
+        if userChoice == "exit":
+            Game = False
+        else:
+            stockinvest()
+    SaveData()
 
 def startgame():
     print('Welcome to Bralfie Brant Simulator the hit investment game!')
@@ -70,6 +96,7 @@ def startgame():
     print('so you can afford to pay to fix your super sick RGB gaming laptop')
     print('after it broke T-T. Good luck :D')
     print()
+    CreateLocal()
     startday()
 
 startgame()
