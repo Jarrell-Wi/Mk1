@@ -1,11 +1,11 @@
-placeholder = ""
+placeholder = " "
 def find(board,choice):
     for i in range(0, len(board)):
         for j in range(0, len(board[0])):
             if choice == board[i][j]:
                 return i, j
 
-grid = [["a","X","c","d"],["e","f","g","h"],["i","j","k","l"],["m","n","o","p"]]
+grid = [["a"," ","c","d"],["e","f","g","h"],["i","j","k","l"],["m","n","o","p"]]
 
 def show(board):
     for i in range(len(board)):

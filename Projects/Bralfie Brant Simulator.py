@@ -43,11 +43,11 @@ def CreateLocal():
     num = random.randint(0, 999999)
     text = ""
     try:
-        with open("./UserSave"+Player.Username, "r+") as file:
+        with open("./UserSaves/UserSave"+Player.Username, "r+") as file:
             text = file.readline()
             file.close()
     except:
-        open("./UserSave"+Player.Username, "x")
+        open("./UserSaves/UserSave"+Player.Username, "x")
     if text == "":
         Player.LocalSave = "UserSave" + str(num)
     else:
@@ -56,22 +56,27 @@ def CreateLocal():
 
 def SaveData():
     Data = Player.LocalSave + "\n" + str(Player.Money) + "\n" + str(Player.Investments) + "\n" + str(Player.Day)
-    with open("UserSave"+Player.Username, "w+") as file:
+    with open("./UserSaves/UserSave"+Player.Username, "w+") as file:
         file.write(Data)
         file.close()
 
 def LoadData():
-    player = ("./UserSave"+Player.Username)
+    player = ("./UserSaves/UserSave"+Player.Username)
     try:
        with open(player, "r+") as playerdata:
+        print('Save Found! Welcome back :D')
         for i in playerdata:
             print(i)
 
 
 
 
+
         pass #Open File, Read Data, Set Data
     except:
+        CreateLocal()
+        print('No player data found.')
+        print('Creating new save.')
         pass #Error
 
 
@@ -102,6 +107,7 @@ def startday():
     SaveData()
 
 def startgame():
+    print()
     print('Welcome to Bralfie Brant Simulator the hit investment game!')
     print('your goal is to make as much money as possible from your savings')
     print('so you can afford to pay to fix your super sick RGB gaming laptop')
@@ -109,7 +115,6 @@ def startgame():
     print()
     Username = input("Enter A Username: ")
     Player.Username = Username
-    CreateLocal()
     LoadData()
     startday()
 
