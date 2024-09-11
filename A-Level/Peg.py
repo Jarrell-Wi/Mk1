@@ -4,16 +4,37 @@ def find(board,choice):
         for j in range(0, len(board[0])):
             if choice == board[i][j]:
                 return i, j
+fill = ['a', ' ', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x' ]
+grid = []
 
-grid = [["a"," ","c","d"],["e","f","g","h"],["i","j","k","l"],["m","n","o","p"]]
+def CreateGrid():
+    return()
+
+def SaveData():
+    with open('Board.txt', 'w') as GameSave:
+        GameSave.write(str(grid))
+
+def LoadData():
+    with open('Board.txt', ' r') as GameSave:
+        grid = GameSave.readline()
+
+
+
 
 def show(board):
     for i in range(len(board)):
         print(grid[i])
 
 while True:
+    Columns = int(input('How many columns: '))
+    rows = int(input('How many rows: '))
+    CreateGrid()
     show(grid)
     choice = input("Enter a letter: ").lower()
+    if choice == 'save':
+        SaveData()
+    elif choice == 'load':
+        LoadData()
     direction = input("Enter a direction (u,d,l,r): ")
 
     row, column = find(grid, choice)
