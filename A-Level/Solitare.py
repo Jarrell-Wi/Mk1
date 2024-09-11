@@ -1,4 +1,4 @@
-Placeholder = “ ”
+placeholder = ""
 def find(board,choice):
     for i in range(0, len(board)):
         for j in range(0, len(board[0])):
@@ -8,7 +8,7 @@ def find(board,choice):
 grid = [["a","X","c","d"],["e","f","g","h"],["i","j","k","l"],["m","n","o","p"]]
 
 def show(board):
-    for I in range(len(board)):
+    for i in range(len(board)):
         print(grid[i])
 
 while True:
