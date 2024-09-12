@@ -8,6 +8,11 @@ fill = ['a', ' ', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o
 grid = []
 
 def CreateGrid():
+    print('Max size 6 x 4')
+    columns = int(input('Enter Columns: '))
+    rows = int(input('Enter Rows: '))
+      
+
     return()
 
 def SaveData():
