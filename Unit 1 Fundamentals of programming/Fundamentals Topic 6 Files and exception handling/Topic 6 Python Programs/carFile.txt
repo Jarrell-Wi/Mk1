@@ -1,0 +1,10 @@
+VW Golf,4500
+Ford Galaxy,6350
+Renault,1999
+Skoda,2950
+Volvo,4399
+ford,2345
+bentley,2222
+Toyota,3456
+VW,3890
+hyundai,6877
