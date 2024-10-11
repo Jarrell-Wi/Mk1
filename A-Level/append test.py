@@ -57,7 +57,7 @@ def start(name):
     if choice == '4':
         highscore(name)
     if choice == '5':
-        print(quit)
+        print(quit())
 
         
 print('Welcome to Score thingy :D')
