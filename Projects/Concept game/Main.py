@@ -54,9 +54,9 @@ def PlayerMove(Board):
     while not Valid:
         Row, Column = GetRowColumn(Board)
         Valid = CheckValid(Board, Row, Column)
-        PrintBoard(Board)
     print('Move Executed')
     Board[Row - 1][Column - 1] = 'X'
+    PrintBoard(Board)
 
 def CheckValid(Board, Row, Column):
     if Board[Row][Column] != '-':
