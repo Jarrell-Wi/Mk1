@@ -80,7 +80,6 @@ def CheckWin(Board, Player):
     Horizontal = CheckHor(Board, Player)
     Vertical = CheckVer(Board, Player)
     Diagonal = CheckDiag(Board, Player)
-    print(Diagonal)
     for i in range(3):
         if Horizontal[i] == '111':
             return True
@@ -242,6 +241,10 @@ def Multiplayer():
             print('Congratulations Player 1.')
             print('You have Won!!!')
             break
+        if CheckDraw(Board) == True:
+            print('The Game is Over')
+            print('You have Drawn')
+            break
         Player = '0'
         Board = PlayerMove(Board, Player)
         if CheckWin(Board, Player) == True:
@@ -249,6 +252,10 @@ def Multiplayer():
             print('Congratulations Player 2.')
             print('You have Won!!!')
             break
-            start()
+        if CheckDraw(Board) == True:
+            print('The Game is Over')
+            print('You have Drawn')
+            break
+    Start()
     
 Start()
