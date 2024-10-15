@@ -65,6 +65,17 @@ def GameModes():
                 print()
                 print('Enter Difficulty Displayed on the Menu')
 
+def CheckDraw(Board):
+    filled = 0
+    for i in range(3):
+        for j in range(3):
+            if Board[i][j] != '-':
+                filled += 1
+    if filled == 9:
+        return True
+    else:
+        return False
+
 def CheckWin(Board, Player):
     Horizontal = CheckHor(Board, Player)
     Vertical = CheckVer(Board, Player)
@@ -154,6 +165,7 @@ def PlayerMove(Board, Player):
     while not Valid:
         Row, Column = GetRowColumn(Board)
         Valid = CheckValid(Board, Row, Column)
+    print()
     print('Move Executed')
     Board[Row - 1][Column - 1] = Player
     return(Board)
@@ -227,7 +239,7 @@ def Multiplayer():
         Player = 'X'
         Board = PlayerMove(Board, Player)
         if CheckWin(Board, Player) == True:
-            print('Congratulations Player 2.')
+            print('Congratulations Player 1.')
             print('You have Won!!!')
             break
         Player = '0'
@@ -238,6 +250,5 @@ def Multiplayer():
             print('You have Won!!!')
             break
             start()
-        
     
 Start()
