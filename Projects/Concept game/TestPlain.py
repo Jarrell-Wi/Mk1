@@ -10,44 +10,52 @@ def CreateBoard():
 def CheckHor(Board, Player):
     outcomes = []
     for i in range(3):
-        prob = 0
+        order = []
         for j in range (3):
             if Board[i][j] == Player:
-                prob +=1
-        full = 'H' + str(i + 1) + '' + str(prob)
+                order.append('1')
+            else:
+                order.append('0')
+        full = 'H' + str(i + 1) + '-' + order[0] + order[1] + order[2]
         outcomes.append(full)
     return outcomes
 
 def CheckVer(Board, Player):
     outcomes = []
     for i in range(3):
-        prob = 0
+        order = []
         for j in range(3):
             if Board[j][i] == Player:
-                prob += 1
-        full = 'V' + str(i + 1) + 'prob' + str(prob)
+                order.append('1')
+            else:
+                order.append('0')
+        full = 'V' + str(i + 1) + '-' + order[0] + order[1] + order[2]
         outcomes.append(full)
     return outcomes
 
 
 def CheckDiag(Board, Player):
     outcomes = []
-    prob = 0
+    order = []
     x = 2
     y = 0
     for i in range(3):
         if Board[i][i * (-1)] == Player:
-            prob += 1
-    full = 'DL prob' + str(prob)
+            order.append('1')
+        else:
+            order.append('0')
+    full = 'DL' + '-' + order[0] + order[1] + order[2]
     outcomes.append(full)
 
-    prob = 0
+    order = []
     for i in range(3):
         if Board[x][y] == Player:
-            prob += 1
+            order.append('1')
+        else:
+            order.append('0')
         x -= 1
         y += 1
-    full = 'DR prob' + str(prob)
+    full = 'DR' + '-' + order[0] + order[1] + order[2]
     outcomes.append(full)
     return outcomes
 
