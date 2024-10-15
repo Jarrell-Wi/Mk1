@@ -165,11 +165,11 @@ def Multiplayer():
     Board = CreateBoard()
     GameWon = False
     while not GameWon:
-        Player = '0'
+        Player = 'X'
         Board = PlayerMove(Board, Player)
         if CheckWin(Board) == True:
             break
-        Player = 'X'
+        Player = '0'
         Board = PlayerMove(Board, Player)
         if CheckWin(Board) == True:
             break
