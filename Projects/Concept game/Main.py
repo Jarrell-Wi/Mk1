@@ -65,14 +65,70 @@ def GameModes():
                 print()
                 print('Enter Difficulty Displayed on the Menu')
 
-def CheckWin(Board):
-    choice = input('Win Y/N?')
-    if choice == 'Y':
-        print(Board)
+def CheckWin(Board, Player):
+    Horizontal = CheckHor(Board, Player)
+    Vertical = CheckVer(Board, Player)
+    Diagonal = CheckDiag(Board, Player)
+    print(Diagonal)
+    for i in range(3):
+        if Horizontal[i] == '111':
+            return True
+        if Vertical[i] == '111':
+            return True
+    if Diagonal[0] == '111' or Diagonal[1] == '111':
         return True
-    if choice == 'N':
-        return False
-        
+
+def CheckHor(Board, Player):
+    outcomes = []
+    for i in range(3):
+        order = []
+        for j in range (3):
+            if Board[i][j] == Player:
+                order.append('1')
+            else:
+                order.append('0')
+        full = order[0] + order[1] + order[2]
+        outcomes.append(full)
+    return outcomes
+
+def CheckVer(Board, Player):
+    outcomes = []
+    for i in range(3):
+        order = []
+        for j in range(3):
+            if Board[j][i] == Player:
+                order.append('1')
+            else:
+                order.append('0')
+        full = order[0] + order[1] + order[2]
+        outcomes.append(full)
+    return outcomes
+
+def CheckDiag(Board, Player):
+    outcomes = []
+    order = []
+    x = 2
+    y = 0
+    for i in range(3):
+        if Board[i][i * (-1)] == Player:
+            order.append('1')
+        else:
+            order.append('0')
+    full = order[0] + order[1] + order[2]
+    outcomes.append(full)
+
+    order = []
+    for i in range(3):
+        if Board[x][y] == Player:
+            order.append('1')
+        else:
+            order.append('0')
+        x -= 1
+        y += 1
+    full = order[0] + order[1] + order[2]
+    outcomes.append(full)
+    return outcomes
+
 def GetRowColumn(Board):
     Row = 10
     Column = 10
@@ -161,20 +217,27 @@ def CreateBoard():
         Board.append(Rows)
     return Board
 
+def Singleplayer(Difficulty):
+    return True
+    
 def Multiplayer():
     Board = CreateBoard()
     GameWon = False
     while not GameWon:
         Player = 'X'
         Board = PlayerMove(Board, Player)
-        if CheckWin(Board) == True:
+        if CheckWin(Board, Player) == True:
+            print('Congratulations Player 2.')
+            print('You have Won!!!')
             break
         Player = '0'
         Board = PlayerMove(Board, Player)
-        if CheckWin(Board) == True:
+        if CheckWin(Board, Player) == True:
+            print()
+            print('Congratulations Player 2.')
+            print('You have Won!!!')
             break
-
-def Singleplayer(Difficulty):
-    return True
+            start()
+        
     
 Start()
