@@ -68,6 +68,7 @@ def GameModes():
 def CheckWin(Board):
     choice = input('Win Y/N?')
     if choice == 'Y':
+        print(Board)
         return True
     if choice == 'N':
         return False
@@ -76,7 +77,6 @@ def GetRowColumn(Board):
     Row = 10
     Column = 10
     while Row > 3 or Row < 1 or Column > 3 or Column < 1:
-        print('The Board Looks Like This.')
         PrintBoard(Board)
         try:
             print()
@@ -103,7 +103,7 @@ def PlayerMove(Board, Player):
     return(Board)
 
 def CheckValid(Board, Row, Column):
-    if Board[Row][Column] != '-':
+    if Board[Row - 1][Column - 1] != '-':
         return False
     else:
         return True
@@ -147,11 +147,10 @@ def Quit():
 
 def PrintBoard(Board):
     print()
-    j = 0
     print('The Board Looks Like this')
     print()
     for i in range(3):
-        print(' | ' + Board[i][j] + ' | ' + Board[i][j + 1]  + ' | ' + Board[i][j + 2] + ' | ')
+        print(' | ' + Board[i][0] + ' | ' + Board[i][1]  + ' | ' + Board[i][2] + ' | ')
 
 def CreateBoard():
     Board = []
@@ -174,9 +173,6 @@ def Multiplayer():
         Board = PlayerMove(Board, Player)
         if CheckWin(Board) == True:
             break
-
-
-
 
 def Singleplayer(Difficulty):
     return True
