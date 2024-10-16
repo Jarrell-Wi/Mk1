@@ -1,3 +1,4 @@
+import random
 def Start():
     DisplayMenu()
     Choice = GetChoice()
@@ -120,7 +121,7 @@ def CheckDiag(Board, Player):
     x = 2
     y = 0
     for i in range(3):
-        if Board[i][i * (-1)] == Player:
+        if Board[i][i] == Player:
             order.append('1')
         else:
             order.append('0')
@@ -228,8 +229,99 @@ def CreateBoard():
         Board.append(Rows)
     return Board
 
-def Singleplayer(Difficulty):
+def GetType():
+    Valid = False
+    while not Valid:
+        print('1 - Play as 0s')
+        print()
+        print('2 - Play as Xs')
+        try:
+            PlayerType = int(input('Choose Your Play Piece: '))
+            if PlayerType == 1 or PlayerType == 2:
+                Valid = True
+            else:
+                print()
+                print('Enter a Number Shown Within the Displayed Options.')
+                print()
+        except:
+            print()
+            print('Enter a Number Shown Within the Displayed Options.')
+            print()
+    if PlayerType == 1:
+        return('0', 'X')
+    else:
+        return('X', '0')
+
+    
+
+def EasyMove(Board, Computer):
+    Valid = False
+    while not Valid:
+        x = random.randint(1, 3)
+        y = random.randint(1, 3)
+        if CheckValid(Board, x, y) == True:
+            Board[0][1] = Computer
+            Valid = True
+    return Board
+
+    
+
+
+
+
+
+def ComputerEasy():
+    Board = CreateBoard()
+    Player, Computer = GetType()
+    Done = False
+    while not Done:
+        Board = PlayerMove(Board, Player)
+        if CheckWin(Board, Player) == True:
+            print()
+            print('Congratulations Player.')
+            PrintBoard(Board)
+            print('You have Won!!!')
+            break
+        if CheckDraw(Board) == True:
+            print()
+            print('The Game is Over')
+            PrintBoard(Board)
+            print()
+            print('You have Drawn')
+            break
+        Board = EasyMove(Board, Computer)
+        print('Computer Places')
+        if CheckWin(Board, Computer) == True:
+            print()
+            print('Game is Over.')
+            PrintBoard(Board)
+            print('The Computer has Won.')
+            break
+        if CheckDraw(Board) == True:
+            print()
+            print('The Game is Over')
+            PrintBoard(Board)
+            print()
+            print('You have Drawn.')
+            break
+    Start()
+
+    
+
+
+def ComputerMedium():
     return True
+def ComputerHard():
+    return True
+    
+
+def Singleplayer(Difficulty):
+    if Difficulty == 1:
+        ComputerEasy()
+    elif Difficulty == 2:
+        ComputerMedium()
+    else:
+        ComputerHard()
     
 def Multiplayer():
     Board = CreateBoard()
@@ -238,11 +330,16 @@ def Multiplayer():
         Player = 'X'
         Board = PlayerMove(Board, Player)
         if CheckWin(Board, Player) == True:
+            print()
             print('Congratulations Player 1.')
+            PrintBoard(Board)
             print('You have Won!!!')
             break
         if CheckDraw(Board) == True:
+            print()
             print('The Game is Over')
+            PrintBoard(Board)
+            print()
             print('You have Drawn')
             break
         Player = '0'
@@ -250,10 +347,14 @@ def Multiplayer():
         if CheckWin(Board, Player) == True:
             print()
             print('Congratulations Player 2.')
+            PrintBoard(Board)
             print('You have Won!!!')
             break
         if CheckDraw(Board) == True:
+            print()
             print('The Game is Over')
+            PrintBoard(Board)
+            print()
             print('You have Drawn')
             break
     Start()

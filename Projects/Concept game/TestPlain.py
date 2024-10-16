@@ -40,7 +40,7 @@ def CheckDiag(Board, Player):
     x = 2
     y = 0
     for i in range(3):
-        if Board[i][i * (-1)] == Player:
+        if Board[i][i] == Player:
             order.append('1')
         else:
             order.append('0')
@@ -70,9 +70,9 @@ def PrintBoard(Board):
 
 Board = CreateBoard()
 Player = 'X'
-Board[0][0] = Player
-Board[0][1] = Player
-Board[0][2] = Player
+Board[2][0] = Player
+Board[1][1] = Player
+Board[1][2] = Player
 PrintBoard(Board)
 horizontals = CheckHor(Board, Player)
 verticals = CheckVer(Board, Player)
