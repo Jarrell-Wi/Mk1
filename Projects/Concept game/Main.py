@@ -252,15 +252,13 @@ def GetType():
     else:
         return('X', '0')
 
-    
-
 def EasyMove(Board, Computer):
     Valid = False
     while not Valid:
         x = random.randint(1, 3)
         y = random.randint(1, 3)
         if CheckValid(Board, x, y) == True:
-            Board[0][1] = Computer
+            Board[x - 1][y - 1] = Computer
             Valid = True
     return Board
 
@@ -300,15 +298,11 @@ def ComputerEasy():
             break
     Start()
 
-    
-
-
 def ComputerMedium():
     return True
 def ComputerHard():
     return True
     
-
 def Singleplayer(Difficulty):
     if Difficulty == 1:
         ComputerEasy()
