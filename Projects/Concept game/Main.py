@@ -264,12 +264,6 @@ def EasyMove(Board, Computer):
             Valid = True
     return Board
 
-    
-
-
-
-
-
 def ComputerEasy():
     Board = CreateBoard()
     Player, Computer = GetType()
