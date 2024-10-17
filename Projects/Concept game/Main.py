@@ -147,9 +147,9 @@ def GetRowColumn(Board):
         PrintBoard(Board)
         try:
             print()
-            Row = int(input('Enter Row of Choice: '))
-            print()
             Column = int(input('Enter Column of Choice: '))
+            print()
+            Row = int(input('Enter Row of Choice: '))
             if Row > 3 or Row < 1 or Column > 3 or Column < 1:
                 print()
                 print('Invalid Input')
@@ -212,6 +212,14 @@ def GetChoice():
 
 def Quit():
     print('Exiting Program...')
+
+def TestBoard():
+    Board = CreateBoard()
+    Board[1][1] = 'X'
+    Board[0][1] = '0'
+    Board[2][2] = '0'
+    Board[1][2] = 'X' 
+    PrintBoard(Board)
 
 def PrintBoard(Board):
     print()
@@ -300,6 +308,7 @@ def ComputerEasy():
 
 def ComputerMedium():
     return True
+
 def ComputerHard():
     return True
     
@@ -346,5 +355,6 @@ def Multiplayer():
             print('You have Drawn')
             break
     Start()
-    
+
+TestBoard() 
 Start()
