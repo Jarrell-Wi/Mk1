@@ -1,4 +1,5 @@
 import random
+
 def Start():
     DisplayMenu()
     Choice = GetChoice()
@@ -12,13 +13,13 @@ def Start():
         else:
             Singleplayer(dif)
 
-    if Choice ==2:
+    if Choice == 2:
         print('Open LeaderBoard Text File')
-    if Choice ==3:
+    if Choice == 3:
         print('Open Save File for player or create')
-    if Choice ==4:
-        print('WIP Function')
-    if Choice ==9:
+    if Choice == 4:
+        TestBoard()
+    if Choice == 9:
         Quit()
 
 def GameModes():
@@ -222,13 +223,59 @@ def GetChoice():
 def Quit():
     print('Exiting Program...')
 
+def ClearBoard(Board):
+    for i in range(3):
+        for j in range(3):
+            Board[i][j] == '-'
+    return Board
+
+def PickType():
+    Finished = False
+    while not Finished:
+        try:
+            print()
+            print('1 - 0s')
+            print()
+            print('2 - Xs')
+            print()
+            print('3 - Clear Space')
+            print()
+            print('4 - Clear Board')
+            print()
+            print('5 - End Testing\n')
+            Choice = int(input('Enter Choice: '))
+            if Choice > 0 and Choice < 6:
+                if Choice == 1:
+                    return '0'
+                if Choice == 2:
+                    return 'X'
+                if Choice == 3:
+                    return '-'
+                else:
+                    return Choice
+        except:
+            print()
+            print('Invalid.')
+
+def TestMove(Board):
+    Done = False
+    while not Done:
+        Valid = False
+        while not Valid:
+            Row, Column = GetRowColumn(Board)
+            Valid = CheckValid(Row, Column)
+        Type = PickType()
+        if Type == 4:
+            Board = ClearBoard(Board)
+        elif Type == 5:
+            Done = True
+        else:
+            Board[Row][Column] == Type
+    Start()
+        
 def TestBoard():
     Board = CreateBoard()
-    Board[1][1] = 'X'
-    Board[0][1] = '0'
-    Board[2][2] = '0'
-    Board[1][2] = 'X' 
-    PrintBoard(Board)
+    TestMove(Board)
 
 def PrintBoard(Board):
     print()
@@ -370,6 +417,5 @@ def Multiplayer():
             print('You have Drawn')
             break
     Start()
-
-TestBoard() 
+ 
 Start()
