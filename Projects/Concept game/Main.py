@@ -226,12 +226,6 @@ def GetChoice():
 def Quit():
     print('Exiting Program...')
 
-def ClearBoard(Board):
-    for i in range(3):
-        for j in range(3):
-            Board[i][j] == '-'
-    return Board
-
 def PickType():
     Finished = False
     while not Finished:
@@ -268,9 +262,10 @@ def TestMove(Board):
         PrintBoard(Board)
         Type = PickType()
         if Type == 4:
-            Board = ClearBoard(Board)
+            Board = CreateBoard()
         elif Type == 5:
-            FindBest(Board)
+            Player = GetType()
+            FindBest(Board, Player)
         elif Type == 6:
             Quit()
         else:
