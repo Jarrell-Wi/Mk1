@@ -1,4 +1,7 @@
 import random
+import Algorithm as AI
+
+
 
 def Start():
     DisplayMenu()
@@ -96,7 +99,7 @@ def CheckWin(Board, Player):
 def FindBest(Board, Player):
     Horizontals = CheckHor(Board, Player)
     Verticals = CheckVer(Board, Player)
-    Diags = CheckDiag
+    Diags = CheckDiag(Board, Player)
     print(Horizontals)
     print(Verticals)
     print(Diags) 
@@ -225,6 +228,7 @@ def GetChoice():
 
 def Quit():
     print('Exiting Program...')
+    exit()
 
 def PickType():
     Finished = False
@@ -241,9 +245,11 @@ def PickType():
             print()
             print('5 - Find Best Move')
             print()
-            print('6 - End Testing\n')
+            print('6 - Create Test Board')
+            print()
+            print('7 - End Testing\n')
             Choice = int(input('Enter Choice: '))
-            if Choice > 0 and Choice < 7:
+            if Choice > 0 and Choice < 8:
                 if Choice == 1:
                     return '0'
                 if Choice == 2:
@@ -256,17 +262,37 @@ def PickType():
             print()
             print('Invalid.')
 
+def QuickBoard():
+    Board = CreateBoard()
+    numbers = []
+    for i in range(4):
+        number = random.randint(0,2)
+        number2 = random.randint(0,2)
+        numbers.append(number)
+        numbers.append(number2)
+    for i in range(4):
+        if i % 2 == 0:
+            Board[numbers[i + 4]][numbers[i]] = 'X'
+        else:
+            Board[numbers[i + 4]][numbers[i]] = '0'
+    return Board
+
 def TestMove(Board):
     Done = False
     while not Done:
         PrintBoard(Board)
         Type = PickType()
-        if Type == 4:
+        if Type == '-':
+            Row, Column = GetRowColumn(Board)
+            Board[Row - 1][Column - 1] = Type
+        elif Type == 4:
             Board = CreateBoard()
         elif Type == 5:
-            Player = GetType()
+            Player, Computer = GetType()
             FindBest(Board, Player)
         elif Type == 6:
+            Board = QuickBoard()
+        elif Type == 7:
             Quit()
         else:
             Valid = False
