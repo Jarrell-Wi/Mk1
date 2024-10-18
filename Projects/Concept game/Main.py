@@ -89,6 +89,15 @@ def CheckWin(Board, Player):
     if Diagonal[0] == '111' or Diagonal[1] == '111':
         return True
 
+def FindBest(Board, Player):
+    Horizontals = CheckHor(Board, Player)
+    Verticals = CheckVer(Board, Player)
+    Diags = CheckDiag
+    print(Horizontals)
+    print(Verticals)
+    print(Diags) 
+    return True
+
 def CheckHor(Board, Player):
     outcomes = []
     for i in range(3):
@@ -307,6 +316,12 @@ def ComputerEasy():
     Start()
 
 def ComputerMedium():
+    Board = CreateBoard()
+    Board[0][1] = 'X'
+    Player, Computer = GetType()
+    print()
+    PrintBoard(Board)
+    FindBest(Board, Player)
     return True
 
 def ComputerHard():
