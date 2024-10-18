@@ -14,8 +14,10 @@ def Start():
             Singleplayer(dif)
 
     if Choice == 2:
+        #Needs Development Finish AI First
         print('Open LeaderBoard Text File')
     if Choice == 3:
+        #Needs Development Finish AI First
         print('Open Save File for player or create')
     if Choice == 4:
         TestBoard()
@@ -90,6 +92,7 @@ def CheckWin(Board, Player):
     if Diagonal[0] == '111' or Diagonal[1] == '111':
         return True
 
+#Unfinished Needs Further Development for Hard and Medium Modes 
 def FindBest(Board, Player):
     Horizontals = CheckHor(Board, Player)
     Verticals = CheckVer(Board, Player)
@@ -362,6 +365,7 @@ def ComputerEasy():
             break
     Start()
 
+#Will use a Mixture of Accurate Moves Sub Par of FindBest Subroutine
 def ComputerMedium():
     Board = CreateBoard()
     Board[0][1] = 'X'
@@ -371,6 +375,7 @@ def ComputerMedium():
     FindBest(Board, Player)
     return True
 
+#Will use Most Accurate Outputs Generated From FindBest Subroutine
 def ComputerHard():
     return True
     
