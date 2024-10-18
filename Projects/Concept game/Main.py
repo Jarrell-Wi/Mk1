@@ -100,7 +100,7 @@ def FindBest(Board, Player):
     print(Horizontals)
     print(Verticals)
     print(Diags) 
-    return True
+    return 
 
 def CheckHor(Board, Player):
     outcomes = []
@@ -198,7 +198,7 @@ def DisplayMenu():
     print()
     print('3 - View Personal Game History')
     print()
-    print('4 - WIP')
+    print('4 - Begin a Test Game')
     print()
     print('9 - Quit')
 
@@ -245,9 +245,11 @@ def PickType():
             print()
             print('4 - Clear Board')
             print()
-            print('5 - End Testing\n')
+            print('5 - Find Best Move')
+            print()
+            print('6 - End Testing\n')
             Choice = int(input('Enter Choice: '))
-            if Choice > 0 and Choice < 6:
+            if Choice > 0 and Choice < 7:
                 if Choice == 1:
                     return '0'
                 if Choice == 2:
@@ -263,17 +265,20 @@ def PickType():
 def TestMove(Board):
     Done = False
     while not Done:
-        Valid = False
-        while not Valid:
-            Row, Column = GetRowColumn(Board)
-            Valid = CheckValid(Row, Column)
+        PrintBoard(Board)
         Type = PickType()
         if Type == 4:
             Board = ClearBoard(Board)
         elif Type == 5:
-            Done = True
+            FindBest(Board)
+        elif Type == 6:
+            Quit()
         else:
-            Board[Row][Column] == Type
+            Valid = False
+            while not Valid:
+                Row, Column = GetRowColumn(Board)
+                Valid = CheckValid(Board, Row, Column)
+            Board[Row - 1][Column - 1] = Type
     Start()
         
 def TestBoard():
