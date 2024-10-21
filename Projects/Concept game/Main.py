@@ -1,8 +1,6 @@
 import random
 import Algorithm as AI
 
-
-
 def Start():
     DisplayMenu()
     Choice = GetChoice()
@@ -95,15 +93,82 @@ def CheckWin(Board, Player):
     if Diagonal[0] == '111' or Diagonal[1] == '111':
         return True
 
+def FindProb(Type):
+    Chances = []
+    for i in range(len(Type)):
+        Prob = 0
+        for j in range(len(Type[i])):
+            Part = Type[i]
+            if Part[j] == '1':
+                Prob += 1
+        Chances.append(Prob)
+    return Chances
+
+def BestProb(Data):
+    Best = []
+    Place = 0
+    for i in range(len(Data)):
+        if Data[i - 1] > Place:
+            Data.pop(i)
+            Place = Data[i - 1]
+    Best.append(Place)
+    for i in range(len(Data)):
+        if Best[0] == Data[i - 1]:
+            Best.append(Data[i - 1])
+    return Best
+
 #Unfinished Needs Further Development for Hard and Medium Modes 
-def FindBest(Board, Player):
-    Horizontals = CheckHor(Board, Player)
-    Verticals = CheckVer(Board, Player)
-    Diags = CheckDiag(Board, Player)
-    print(Horizontals)
-    print(Verticals)
-    print(Diags) 
-    return 
+def FindBest(Board):
+    Player = '0'
+    Horizontals0 = CheckHor(Board, Player)
+    Verticals0 = CheckVer(Board, Player)
+    Diags0 = CheckDiag(Board, Player)
+
+    HorChance0 = FindProb(Horizontals0)
+    VertChance0 = FindProb(Verticals0)
+    DiagChance0 =  FindProb(Diags0)
+
+    BestHor0 = BestProb(HorChance0)
+    BestVer0 = BestProb(VertChance0)
+    BestDiag0 = BestProb(DiagChance0)
+
+    Player = 'X'
+    HorizontalsX = CheckHor(Board, Player)
+    VerticalsX = CheckVer(Board, Player)
+    DiagsX = CheckDiag(Board, Player)
+
+    HorChanceX = FindProb(HorizontalsX)
+    VertChanceX = FindProb(VerticalsX)
+    DiagChanceX =  FindProb(DiagsX)
+
+    BestHorX = BestProb(HorChanceX)
+    BestVerX = BestProb(VertChanceX)
+    BestDiagX = BestProb(DiagChanceX)
+
+    print(Horizontals0)
+    print(Verticals0)
+    print(Diags0) 
+    print()
+    print(HorChance0)
+    print(VertChance0)
+    print(DiagChance0)
+    print()
+    print(BestHor0)
+    print(BestVer0)
+    print(BestDiag0)
+    print()
+    print(HorizontalsX)
+    print(VerticalsX)
+    print(DiagsX)
+    print()
+    print(HorChanceX)
+    print(VertChanceX)
+    print(DiagChanceX)
+    print()
+    print(BestHorX)
+    print(BestVerX)
+    print(BestDiagX)
+    return
 
 def CheckHor(Board, Player):
     outcomes = []
@@ -146,7 +211,7 @@ def CheckDiag(Board, Player):
 
     order = []
     for i in range(3):
-        if Board[x][y] == Player:
+        if Board[y][x] == Player:
             order.append('1')
         else:
             order.append('0')
@@ -288,8 +353,7 @@ def TestMove(Board):
         elif Type == 4:
             Board = CreateBoard()
         elif Type == 5:
-            Player, Computer = GetType()
-            FindBest(Board, Player)
+            FindBest(Board)
         elif Type == 6:
             Board = QuickBoard()
         elif Type == 7:
