@@ -375,7 +375,7 @@ def PrintBoard(Board):
     print('The Board Looks Like this')
     print()
     for i in range(3):
-        print(' | ' + Board[i][0] + ' | ' + Board[i][1]  + ' | ' + Board[i][2] + ' | ')
+        print(' |' + Board[i][0] + '|' + Board[i][1]  + '|' + Board[i][2] + '|')
 
 def CreateBoard():
     Board = []
