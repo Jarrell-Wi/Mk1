@@ -15,4 +15,5 @@ def PrintBoard(Board):
 def Start():
     Board = CreateBoard()
     PrintBoard(Board)
+
 Start()
