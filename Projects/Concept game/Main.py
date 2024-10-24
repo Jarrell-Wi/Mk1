@@ -1,5 +1,4 @@
 import random
-import Algorithm as AI
 
 def Start():
     DisplayMenu()
@@ -104,6 +103,23 @@ def FindProb(Type):
         Chances.append(Prob)
     return Chances
 
+def FindBestProb(Set):
+    Max = 0
+    Best = []
+    for i in range(len(Set)):
+        if Max < Set[i]:
+            Max = Set[i]
+    Best.append(Max)
+    for i in range(len(Set)):
+        Small = []
+        if Set[i] == Max:
+            Best.append(i)
+    return Best
+
+def RemoveLows(Positions, Best):
+    
+
+
 #Unfinished Needs Further Development for Hard and Medium Modes 
 def FindBest(Board):
     Player = '0'
@@ -115,6 +131,10 @@ def FindBest(Board):
     VertChance0 = FindProb(Verticals0)
     DiagChance0 =  FindProb(Diags0)
 
+    BestHor0 = FindBestProb(HorChance0)
+    BestVert0 = FindBestProb(VertChance0)
+    BestDiag0 = FindBestProb(DiagChance0)
+
     Player = 'X'
     HorizontalsX = CheckHor(Board, Player)
     VerticalsX = CheckVer(Board, Player)
@@ -124,6 +144,10 @@ def FindBest(Board):
     VertChanceX = FindProb(VerticalsX)
     DiagChanceX =  FindProb(DiagsX)
 
+    BestHorX = FindBestProb(HorChanceX)
+    BestVertX = FindBestProb(VertChanceX)
+    BestDiagX = FindBestProb(DiagChanceX)
+
     print(Horizontals0)
     print(Verticals0)
     print(Diags0) 
@@ -131,6 +155,10 @@ def FindBest(Board):
     print(HorChance0)
     print(VertChance0)
     print(DiagChance0)
+    print()
+    print(BestHor0)
+    print(BestVert0)
+    print(BestDiag0)
     print()
     print(HorizontalsX)
     print(VerticalsX)
@@ -140,6 +168,9 @@ def FindBest(Board):
     print(VertChanceX)
     print(DiagChanceX)
     print()
+    print(BestHorX)
+    print(BestVertX)
+    print(BestDiagX)
     return
 
 def CheckHor(Board, Player):

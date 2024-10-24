@@ -1,0 +1,8 @@
+Plan for AI:
+    Currently returns 
+    Board State for each type of search EG: ['000', '101', '011,]
+    Cumulated probability of each search EG: [0, 2, 2]
+    Shortened form with the highest Cumulated Probability at pos [0] and the index 
+    value of the best outcomes in the Board State EG: [2, 1, 2]
+
+
