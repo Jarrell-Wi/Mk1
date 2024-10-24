@@ -104,19 +104,6 @@ def FindProb(Type):
         Chances.append(Prob)
     return Chances
 
-def BestProb(Data):
-    Best = []
-    Place = 0
-    for i in range(len(Data)):
-        if Data[i - 1] > Place:
-            Data.pop(i)
-            Place = Data[i - 1]
-    Best.append(Place)
-    for i in range(len(Data)):
-        if Best[0] == Data[i - 1]:
-            Best.append(Data[i - 1])
-    return Best
-
 #Unfinished Needs Further Development for Hard and Medium Modes 
 def FindBest(Board):
     Player = '0'
@@ -128,10 +115,6 @@ def FindBest(Board):
     VertChance0 = FindProb(Verticals0)
     DiagChance0 =  FindProb(Diags0)
 
-    BestHor0 = BestProb(HorChance0)
-    BestVer0 = BestProb(VertChance0)
-    BestDiag0 = BestProb(DiagChance0)
-
     Player = 'X'
     HorizontalsX = CheckHor(Board, Player)
     VerticalsX = CheckVer(Board, Player)
@@ -141,10 +124,6 @@ def FindBest(Board):
     VertChanceX = FindProb(VerticalsX)
     DiagChanceX =  FindProb(DiagsX)
 
-    BestHorX = BestProb(HorChanceX)
-    BestVerX = BestProb(VertChanceX)
-    BestDiagX = BestProb(DiagChanceX)
-
     print(Horizontals0)
     print(Verticals0)
     print(Diags0) 
@@ -152,10 +131,6 @@ def FindBest(Board):
     print(HorChance0)
     print(VertChance0)
     print(DiagChance0)
-    print()
-    print(BestHor0)
-    print(BestVer0)
-    print(BestDiag0)
     print()
     print(HorizontalsX)
     print(VerticalsX)
@@ -165,9 +140,6 @@ def FindBest(Board):
     print(VertChanceX)
     print(DiagChanceX)
     print()
-    print(BestHorX)
-    print(BestVerX)
-    print(BestDiagX)
     return
 
 def CheckHor(Board, Player):
