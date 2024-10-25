@@ -116,10 +116,6 @@ def FindBestProb(Set):
             Best.append(i)
     return Best
 
-def RemoveLows(Positions, Best):
-    
-
-
 #Unfinished Needs Further Development for Hard and Medium Modes 
 def FindBest(Board):
     Player = '0'
@@ -171,7 +167,39 @@ def FindBest(Board):
     print(BestHorX)
     print(BestVertX)
     print(BestDiagX)
+    print()
+
+
+    Gap = FindGap(HorizontalsX, BestHorX)
     return
+
+def FindGap(Passes, locations):
+    FirstOpen = True
+    SecondOpen = True
+    ThirdOpen = True
+    Probability = locations[0]
+    Places = locations[1:]
+    for i in range(len(Places)):
+        if Places[i] == 0:
+            FirstOpen = False
+        if Places[i] == 1:
+            SecondOpen = False
+        if Places[i] == 2:
+            ThirdOpen = False
+    Options = []
+    Options.append(FirstOpen)
+    Options.append(SecondOpen)
+    Options.append(ThirdOpen)
+    print(Options)
+    #for i in range(3):
+
+    
+    
+
+
+    
+
+    
 
 def CheckHor(Board, Player):
     outcomes = []
