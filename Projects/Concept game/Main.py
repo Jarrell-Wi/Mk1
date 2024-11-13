@@ -174,6 +174,7 @@ def FindBest(Board):
     return
 
 def FindGap(Passes, locations):
+    Options = []
     FirstOpen = True
     SecondOpen = True
     ThirdOpen = True
@@ -186,20 +187,11 @@ def FindGap(Passes, locations):
             SecondOpen = False
         if Places[i] == 2:
             ThirdOpen = False
-    Options = []
     Options.append(FirstOpen)
     Options.append(SecondOpen)
     Options.append(ThirdOpen)
     print(Options)
     #for i in range(3):
-
-    
-    
-
-
-    
-
-    
 
 def CheckHor(Board, Player):
     outcomes = []
