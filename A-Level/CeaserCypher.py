@@ -7,8 +7,13 @@ def encrypt(Phrase, Shift):
 def decrypt(Phrase, Shift):
     Final = ''
     for i in Phrase:
-        Final = Final + chr(ord(i)- Shift)
-    return(Final)
+        set = []
+        for j in Phrase:
+            Final =''
+            Final = Final + chr(ord(i)+ j)
+            set.append(Final)
+    
+    return(set)
 
 a = input('>')
 b = int(input('>'))

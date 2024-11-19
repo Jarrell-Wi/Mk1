@@ -170,28 +170,19 @@ def FindBest(Board):
     print()
 
 
-    Gap = FindGap(HorizontalsX, BestHorX)
+    FindGap(Board)
     return
 
-def FindGap(Passes, locations):
-    Options = []
-    FirstOpen = True
-    SecondOpen = True
-    ThirdOpen = True
-    Probability = locations[0]
-    Places = locations[1:]
-    for i in range(len(Places)):
-        if Places[i] == 0:
-            FirstOpen = False
-        if Places[i] == 1:
-            SecondOpen = False
-        if Places[i] == 2:
-            ThirdOpen = False
-    Options.append(FirstOpen)
-    Options.append(SecondOpen)
-    Options.append(ThirdOpen)
-    print(Options)
-    #for i in range(3):
+def FindGap(Board):
+    Coords = []
+    for i in range(3):
+        for j in range(3):
+            XY =[]
+            if Board[i][j] == '-':
+                XY.append(i)
+                XY.append(j)
+                Coords.append(XY)
+    print(Coords)
 
 def CheckHor(Board, Player):
     outcomes = []
