@@ -1,0 +1,7 @@
+.BG{
+    width: 40vw;
+    height: 40vh;
+    background-color: rgb(0, 0, 0);
+    left: 50%;
+    border-radius: 15%;
+}
