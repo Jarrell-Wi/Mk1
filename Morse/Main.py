@@ -161,11 +161,12 @@ def DisplayMenu():
   print('P - Print Morse code symbols')
   print('T - Transmit Morse code')
   print('C - Convert Morse code')
+  print('E - Send encrpted message')
   print("X - Exit program")
   print()
 
 def GetMenuOption():
-  choices = ['R', 'S', 'X', 'T', 'C']
+  choices = ['R', 'S', 'X', 'T', 'C', 'E']
   MenuOption = EMPTYSTRING
   while len(MenuOption) != 1:
     MenuOption = input("Enter your choice: ")
@@ -208,6 +209,27 @@ def PrintSymbols(Letters, Codes):
     print(f'{Letters[i]} | {Codes[i]}')
   return
 
+def SendEncryptedMorse(MorseCode):
+  PlainText = input("Enter your message (uppercase letters and spaces only): ")
+  Shift = int(input('Enter Ceasar shift: '))
+  PlainTextLength = len(PlainText)
+  MorseCodeString = EMPTYSTRING
+  for i in range(PlainTextLength):
+    PlainTextLetter = PlainText[i]
+    PlainTextLetter = ord(PlainTextLetter) + Shift
+    if PlainTextLetter == SPACE:
+      Index = 0
+    elif PlainTextLetter == FULLSTOP:
+        Index = 27
+    else: 
+      Index = ord(PlainTextLetter) - ord('A') + 1
+    CodedLetter = MorseCode[Index]
+
+    MorseCodeString = MorseCodeString + CodedLetter + SPACE
+
+  return MorseCodeString
+
+
 def SendReceiveMessages():
   Dash = [20,23,27,0,24,1,0,17,0,21,0,25,0,15,11,0,0,0,2,22,13,0,0,10,0,0,0]
   Dot = [5,18,2,0,2,9,0,26,0,19,0,3,0,7,4,0,0,0,12,8,14,6,0,16,0,0,0]
@@ -235,7 +257,10 @@ def SendReceiveMessages():
     
     elif MenuOption == 'C':
       ConvertMorseCode( MorseCode, Letter)
-      
+    
+    elif MenuOption == 'E':
+      print(SendEncryptedMorse(MorseCode))
+
     elif MenuOption == 'X':
       ProgramEnd = True
     
