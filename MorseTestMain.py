@@ -136,6 +136,8 @@ def SendMorseCode(MorseCode, Keys):
         Index += 26 + Keys[ctr]
       elif Index + Keys[ctr] > 26:
         Index -= 26 + Keys[ctr]
+      else:
+        Index += Keys[ctr]
     CodedLetter = MorseCode[Index]
     MorseCodeString = MorseCodeString + CodedLetter + SPACE
     if ctr + 1 == 3:
