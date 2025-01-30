@@ -1,0 +1,33 @@
+.MainBody{
+    background: linear-gradient(black, rgb(70, 69, 69));
+    border: 10%;
+    border-color: aliceblue;
+    background-color: black;
+    color: aliceblue;
+    padding: 5%;
+    margin: 5%;
+    height: 40vh;
+    width: 40vw;
+    border-radius: 10%;
+    left: 50%;
+    position: absolute;
+}
+.HeaderSplit{
+    background-color: aliceblue;
+    color: aliceblue;
+    border-radius: 40%;
+    border-width: 40%;
+    border-style: unset;
+    position: absolute;
+    left: 15%;
+
+    height: 1vh;
+    width: 35vh;
+}
+body{
+    background-color: rgb(75, 73, 73);
+}
+.Text{
+    color: aliceblue;
+
+}
