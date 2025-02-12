@@ -33,12 +33,20 @@ def ReadFile():
   FileName = input('Enter file name: ')
   Field = [[SOIL for Column in range(FIELDWIDTH)] for Row in range(FIELDLENGTH)]
   try:
-    FileHandle = open(FileName, 'r')
-    for Row in range(FIELDLENGTH):
-      FieldRow = FileHandle.readline()
-      for Column in range(FIELDWIDTH):
-        Field[Row][Column] = FieldRow[Column]
-    FileHandle.close()
+    try:
+      FileHandle = open(FileName, 'r')
+      for Row in range(FIELDLENGTH):
+        FieldRow = FileHandle.readline()
+        for Column in range(FIELDWIDTH):
+          Field[Row][Column] = FieldRow[Column]
+      FileHandle.close()
+    except:
+      FileHandle = open(FileName + '.txt', 'r')
+      for Row in range(FIELDLENGTH):
+        FieldRow = FileHandle.readline()
+        for Column in range(FIELDWIDTH):
+          Field[Row][Column] = FieldRow[Column]
+      FileHandle.close()
   except:
     Field = CreateNewField()
   return Field
@@ -73,8 +81,10 @@ def CountPlants(Field):
 def SimulateSpring(Field):
   for Row in range(FIELDLENGTH):
     for Column in range(FIELDWIDTH):
-      if Field[Row][Column] == SEED:  
-        Field[Row][Column] = PLANT
+      if Field[Row][Column] == SEED:
+        Grow = randint(1, 100)
+        if Grow <= 40:  
+          Field[Row][Column] = PLANT
   CountPlants(Field)
   if randint(0, 1) == 1:
     Frost = True
@@ -151,8 +161,8 @@ def Simulation():
       for Year in range(1, YearsToRun + 1):
         SimulateOneYear(Field, Year)
     else:
-      Continuing = True                     
-      Year = 0
+      Continuing = True
+      Year = 0                   
       while Continuing:
         Year += 1
         SimulateOneYear(Field, Year)
@@ -160,7 +170,9 @@ def Simulation():
         if Response == 'x' or Response == 'X':
           Continuing = False
     print('End of Simulation')
-  input()
+  else:
+    Field = InitialiseField()
+    Display(Field, 'Start', YearsToRun)
    
 if __name__ == "__main__":
   Simulation()      
