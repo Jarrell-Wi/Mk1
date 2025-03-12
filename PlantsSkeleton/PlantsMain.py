@@ -19,14 +19,24 @@ def GetHowLongToRun():
   print('You can step through the simulation a year at a time')
   print('or run the simulation for 0 to 5 years')
   print('How many years do you want the simulation to run?')
-  Years = int(input('Enter a number between 0 and 5, or -1 for stepping mode: '))
-  return Years
+  Valid = False
+  while not Valid:
+    Years = int(input('Enter a number between 0 and 5, or -1 for stepping mode: '))
+    if Years <= 5 and Years >= -1:
+      return Years
 
 def CreateNewField(): 
+  Placed = 0
   Field = [[SOIL for Column in range(FIELDWIDTH)] for Row in range(FIELDLENGTH)]
   Row = FIELDLENGTH // 2
   Column = FIELDWIDTH // 2
   Field[Row][Column] = SEED
+  while Placed != 5:
+    X = randint(0, 34)
+    Y = randint(0, 19)
+    if Field[Y][X] == SOIL:
+      Field[Y][X] = ROCKS
+      Placed += 1
   return Field
 
 def ReadFile():   
@@ -105,6 +115,7 @@ def SimulateSpring(Field):
 def SimulateSummer(Field): 
   RainFall = randint(0, 2)
   if RainFall == 0:
+    Killed = 0
     PlantCount = 0
     for Row in range(FIELDLENGTH):
       for Column in range(FIELDWIDTH):
@@ -112,7 +123,8 @@ def SimulateSummer(Field):
           PlantCount += 1
           if PlantCount % 2 == 0:
             Field[Row][Column] = SOIL
-    print('There has been a severe drought')
+            Killed += 1
+    print('There has been a severe drought: ' + Killed + 'plants have died')
     CountPlants(Field)
   return Field
 
