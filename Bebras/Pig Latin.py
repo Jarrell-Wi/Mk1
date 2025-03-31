@@ -1,5 +1,5 @@
 Vowels = ['a', 'e', 'i', 'o', 'u']
-Text = input('Enter text to translate: ')
+Text = input()
 if Text[0].lower() in Vowels:
     print(f'{Text}-yay')
 else:

@@ -19,18 +19,21 @@ def CheckDiag(Grid):
                 Total += Grid[i][j]
     if Total != 15:
         return False
+    x = 0
+    y = 2
+    Total = 0
     for i in range(3):
-        for j in range(3):
-            
-
-
-
+        Total += Grid[y][x]
+        y -= 1
+        x += 1
+    if Total != 15:
+        return False
+    return True
 
 Grid = []
 for i in range(3):
     Row = input()
     Grid.append(Row)
-print(Grid)
 Real = []
 for i in Grid:
     Correct = []
@@ -38,12 +41,15 @@ for i in Grid:
     for k in j:
         Correct.append(int(k))
     Real.append(Correct)
-print(Real)
 
 HorVer = CheckHorVer(Real)
 if not HorVer:
     print('muggle')
 else:
     Diags = CheckDiag(Real)
+    if Diags:
+        print('magic')
+    else:
+        print('muggle')
 
-            
+        
