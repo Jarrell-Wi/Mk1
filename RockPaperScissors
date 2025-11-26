@@ -1,0 +1,39 @@
+import os, time, random
+
+def PrintMoveList():
+    print('1 - Throw Rock\n2 - Throw Paper\n3 - Throw Scissors')
+
+def GetMove():
+    Valid = False
+    while not Valid:
+        os.system('clear')
+        PrintMoveList()
+        try:
+            Move = int(input('Enter Move: '))
+            Valid = True
+        except:
+            print('Please Enter an Option Provided.')
+            time.sleep(2)
+
+def GetBotMove():
+    BotChoice = random.choice([2, 4, 6]) # S R P
+    return BotChoice
+
+def FindWinner(PlayerMove, BotMove):
+    Moves = ['Rock', 'Paper', 'Scissors']
+    if BotMove // 2 == PlayerMove:
+        return True
+    elif 
+    
+
+
+def Main():
+    Running = True
+    while Running:
+        PlayerChoice = GetMove()
+        BotChoice = GetBotMove()
+        Result = FindWinner(PlayerChoice, BotChoice)
+    return
+
+if __name__ == '__main__':
+    Main()
